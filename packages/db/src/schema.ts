@@ -8,11 +8,9 @@ import {
   integer,
   numeric,
   timestamp,
-  uniqueIndex,
   index,
   unique,
   jsonb,
-  check,
 } from 'drizzle-orm/pg-core'
 import { sql } from 'drizzle-orm'
 
