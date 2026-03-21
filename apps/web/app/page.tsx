@@ -4,6 +4,7 @@ import type { Product } from '@bedo-fish/types'
 import { ProductCard } from '@/components/product/ProductCard'
 import { ProductCardSkeleton } from '@/components/product/ProductCardSkeleton'
 import { Footer } from '@/components/layout/Footer'
+import { HeroCtaCard } from '@/components/hero/HeroCtaCard'
 
 async function getFeaturedProducts(): Promise<Product[]> {
   const baseUrl = process.env.NEXT_PUBLIC_API_URL ?? 'http://localhost:4000/v1'
@@ -128,6 +129,9 @@ export default async function HomePage() {
             Free delivery in Nairobi on orders above KES 1,500
           </p>
         </div>
+
+        {/* Glassmorphism CTA card at base of hero */}
+        <HeroCtaCard />
       </section>
 
       {/* ── Section 2: Stats Bar ─────────────────────── */}

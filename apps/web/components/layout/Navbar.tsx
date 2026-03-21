@@ -1,6 +1,7 @@
 'use client'
 
 import Link from 'next/link'
+import Image from 'next/image'
 import { usePathname } from 'next/navigation'
 import { useSession, signIn } from 'next-auth/react'
 import { useState } from 'react'
@@ -34,18 +35,15 @@ export function Navbar() {
         }`}
       >
         {/* Left: Logo */}
-        <Link href="/" className="flex items-center gap-2 flex-shrink-0">
-          <div className="w-[34px] h-[34px] bg-orange rounded-full flex items-center justify-center">
-            <svg width="20" height="14" viewBox="0 0 20 14" fill="none" aria-hidden="true">
-              <ellipse cx="8" cy="7" rx="7" ry="5" fill="white" />
-              <circle cx="5" cy="5.5" r="1.2" fill="rgba(244,145,30,0.6)" />
-              <path d="M15 7L20 3L20 11Z" fill="white" />
-            </svg>
-          </div>
-          <span className="font-display text-[18px] tracking-[3px] font-black">
-            <span className="text-white">BEDO</span>
-            <span className="text-orange">FISH</span>
-          </span>
+        <Link href="/" className="flex items-center flex-shrink-0">
+          <Image
+            src="/images/bedo-nav-logo.png"
+            alt="Bedo Fish"
+            width={150}
+            height={44}
+            className="object-contain w-auto h-10"
+            priority
+          />
         </Link>
 
         {/* Center: Nav links — absolutely centered in navbar */}

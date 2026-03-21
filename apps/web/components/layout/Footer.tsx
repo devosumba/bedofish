@@ -1,3 +1,6 @@
+import Image from 'next/image'
+import Link from 'next/link'
+
 export function Footer() {
   const shopLinks = ['All Products', 'Family Packs', 'Bulk Orders', 'Export Packs']
   const companyLinks = ['Our Story', 'Impact', 'Our Team', 'Contact']
@@ -8,17 +11,16 @@ export function Footer() {
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
         {/* Brand column */}
         <div>
-          <div className="flex items-center gap-2 mb-2.5">
-            <div className="w-7 h-7 bg-orange rounded-full flex items-center justify-center">
-              <svg width="16" height="11" viewBox="0 0 20 14" fill="none" aria-hidden="true">
-                <ellipse cx="8" cy="7" rx="7" ry="5" fill="white" />
-                <path d="M15 7L20 3L20 11Z" fill="white" />
-              </svg>
-            </div>
-            <span className="font-display text-[16px] tracking-[3px] font-black">
-              <span className="text-white">BEDO</span>
-              <span className="text-orange">FISH</span>
-            </span>
+          <div className="mb-2.5">
+            <Link href="/" className="flex items-start">
+              <Image
+                src="/images/bedo-nav-logo.png"
+                alt="Bedo Fish"
+                width={130}
+                height={38}
+                className="object-contain w-auto h-9"
+              />
+            </Link>
           </div>
           <p className="text-white/38 font-body text-xs leading-7 max-w-[200px]">
             Empowering Women, Sustaining Communities, Feeding the World.

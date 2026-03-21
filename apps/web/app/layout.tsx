@@ -23,6 +23,7 @@ const fraunces = Fraunces({
   variable: '--fraunces',
   display: 'swap',
   style: ['normal', 'italic'],
+  weight: 'variable',
 })
 
 export const metadata: Metadata = {
@@ -41,13 +42,10 @@ export const metadata: Metadata = {
   twitter: { card: 'summary_large_image' },
   icons: {
     icon: [
-      {
-        url: '/images/bedo_favicon.svg',
-        type: 'image/svg+xml',
-      },
+      { url: '/images/favicon.png', type: 'image/png' },
     ],
-    shortcut: '/images/bedo_favicon.svg',
-    apple: '/images/bedo_favicon.svg',
+    shortcut: '/images/favicon.png',
+    apple: '/images/favicon.png',
   },
 }
 
