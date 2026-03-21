@@ -29,11 +29,11 @@ export function Navbar() {
   return (
     <>
       <nav
-        className={`sticky top-0 z-50 h-[60px] flex items-center px-6 lg:px-10 transition-colors duration-300 ${
+        className={`relative sticky top-0 z-50 h-[60px] flex items-center justify-between px-6 lg:px-10 transition-colors duration-300 ${
           isTransparent ? 'bg-transparent' : 'bg-navy'
         }`}
       >
-        {/* Logo */}
+        {/* Left: Logo */}
         <Link href="/" className="flex items-center gap-2 flex-shrink-0">
           <div className="w-[34px] h-[34px] bg-orange rounded-full flex items-center justify-center">
             <svg width="20" height="14" viewBox="0 0 20 14" fill="none" aria-hidden="true">
@@ -48,21 +48,21 @@ export function Navbar() {
           </span>
         </Link>
 
-        {/* Center nav — desktop only */}
-        <div className="hidden md:flex items-center gap-6 mx-auto">
+        {/* Center: Nav links — absolutely centered in navbar */}
+        <div className="absolute left-1/2 -translate-x-1/2 hidden md:flex items-center gap-7">
           {NAV_LINKS.map((link) => (
             <Link
               key={link.href}
               href={link.href}
-              className="font-body text-[13px] text-white/65 hover:text-white transition-colors"
+              className="font-body text-[13px] font-medium text-white/65 hover:text-white transition-colors duration-150"
             >
               {link.label}
             </Link>
           ))}
         </div>
 
-        {/* Right section */}
-        <div className="flex items-center gap-3 ml-auto">
+        {/* Right: Auth + Cart */}
+        <div className="flex items-center gap-3 flex-shrink-0">
           {/* Cart button */}
           <button
             onClick={toggleCart}

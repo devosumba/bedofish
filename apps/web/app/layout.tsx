@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import { Playfair_Display, DM_Sans } from 'next/font/google'
+import { Playfair_Display, DM_Sans, Fraunces } from 'next/font/google'
 import './globals.css'
 import { Providers } from '@/components/Providers'
 import { Navbar } from '@/components/layout/Navbar'
@@ -15,6 +15,14 @@ const dmSans = DM_Sans({
   subsets: ['latin'],
   weight: ['300', '400', '500', '600'],
   variable: '--font-body',
+})
+
+const fraunces = Fraunces({
+  subsets: ['latin'],
+  axes: ['opsz', 'SOFT', 'WONK'],
+  variable: '--font-fraunces',
+  display: 'swap',
+  style: ['normal', 'italic'],
 })
 
 export const metadata: Metadata = {
@@ -35,7 +43,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${playfair.variable} ${dmSans.variable}`}>
+    <html lang="en" className={`${playfair.variable} ${dmSans.variable} ${fraunces.variable}`}>
       <body className="font-body">
         <Providers>
           <Navbar />

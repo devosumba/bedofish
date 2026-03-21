@@ -1,6 +1,6 @@
 import { Suspense } from 'react'
+import Image from 'next/image'
 import type { Product } from '@bedo-fish/types'
-import { HeroAddToCart } from '@/components/product/HeroAddToCart'
 import { ProductCard } from '@/components/product/ProductCard'
 import { ProductCardSkeleton } from '@/components/product/ProductCardSkeleton'
 import { Footer } from '@/components/layout/Footer'
@@ -21,108 +21,112 @@ async function getFeaturedProducts(): Promise<Product[]> {
 
 export default async function HomePage() {
   const featured = await getFeaturedProducts()
-  const heroProduct = featured[0] ?? null
 
   return (
     <>
       {/* ── Section 1: Hero ─────────────────────────── */}
-      <section className="bg-navy py-14 px-6 lg:px-16">
-        <div className="grid lg:grid-cols-[1.2fr_1fr] gap-10 items-center max-w-6xl mx-auto">
-          {/* Left */}
-          <div>
-            <div className="inline-flex items-center gap-2 bg-orange/15 border border-orange/25 rounded-full px-3 py-1.5 mb-5">
-              <div className="w-[7px] h-[7px] bg-orange rounded-full" />
-              <span className="text-orange font-body text-[11px] font-semibold uppercase tracking-[1.5px]">
-                Its About To Get Fishy
+      <section className="relative w-full min-h-[90vh] flex flex-col items-center justify-center text-center px-6">
+        {/* Background image */}
+        <Image
+          src="/images/bedohome.jpg"
+          alt="Bedo Fish hero"
+          fill
+          className="object-cover object-center"
+          priority
+          quality={90}
+        />
+
+        {/* Dark overlay */}
+        <div
+          className="absolute inset-0 z-10"
+          style={{ background: 'linear-gradient(to bottom, rgba(0,0,0,0.45), rgba(0,0,0,0.52) 60%, rgba(0,0,0,0.65))' }}
+        />
+
+        {/* Content */}
+        <div className="relative z-20 flex flex-col items-center max-w-4xl mx-auto">
+          {/* Eyebrow badge */}
+          <div className="hero-eyebrow inline-flex items-center border border-white/30 rounded-full px-4 py-1.5 mb-5">
+            <span className="font-body text-[11px] font-semibold text-white uppercase tracking-[2.5px]">
+              ITS ABOUT TO GET FISHY
+            </span>
+          </div>
+
+          {/* Headline */}
+          <h1
+            className="hero-h1 font-display font-black text-white text-center"
+            style={{ fontSize: 'clamp(2.8rem, 6vw, 5rem)', letterSpacing: '-0.02em', lineHeight: 1.05 }}
+          >
+            <span className="block">Africa&apos;s Finest</span>
+            <span className="block">
+              <span className="relative inline-block">
+                Roasted
+                <svg
+                  className="absolute -bottom-2 left-0 w-full"
+                  viewBox="0 0 200 12"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                  preserveAspectRatio="none"
+                >
+                  <path
+                    d="M2 8C20 4 50 2 90 5C120 7.5 155 9.5 198 6"
+                    stroke="#014aad"
+                    strokeWidth="4"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
               </span>
-            </div>
+              {' '}Tilapia
+            </span>
+            <span className="block">
+              Delivered{' '}
+              <span className="relative inline-block">
+                Fresh
+                <svg
+                  className="absolute -bottom-2 left-0 w-full"
+                  viewBox="0 0 200 12"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                  preserveAspectRatio="none"
+                >
+                  <path
+                    d="M2 8C20 4 50 2 90 5C120 7.5 155 9.5 198 6"
+                    stroke="#014aad"
+                    strokeWidth="4"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
+              </span>
+            </span>
+          </h1>
 
-            <h1
-              className="font-display font-black text-5xl lg:text-[52px] mb-[18px]"
-              style={{ lineHeight: 1.07 }}
+          {/* Subtext */}
+          <p className="hero-sub text-white/80 font-body text-base max-w-xl mx-auto leading-7 mt-5 mb-8">
+            Every fish we roast fuels healthier diets, empowers women, and scales a sustainable
+            future from Lake Victoria to your table.
+          </p>
+
+          {/* CTA buttons */}
+          <div className="hero-actions flex items-center gap-3 justify-center flex-wrap">
+            <a
+              href="/shop"
+              className="bg-orange text-white font-body font-medium px-7 py-3.5 rounded-xl hover:bg-orange-dark transition-colors"
             >
-              <span className="text-white">Africa&apos;s Finest</span>
-              <br />
-              <span className="text-orange">Roasted Tilapia</span>
-              <br />
-              <span className="text-white">Delivered Fresh</span>
-            </h1>
-
-            <p className="text-white/[0.62] font-body text-[15px] leading-[1.82] max-w-lg mb-7">
-              Every fish we roast fuels healthier diets, empowers women, and scales a sustainable
-              future from Lake Victoria to your table.
-            </p>
-
-            <div className="flex items-center gap-3 flex-wrap">
-              <a
-                href="/shop"
-                className="bg-orange text-white font-body text-[15px] font-medium px-6 py-3.5 rounded-lg hover:bg-orange-dark transition-colors"
-              >
-                Shop Now
-              </a>
-              <a
-                href="/#our-story"
-                className="bg-transparent text-white border-[1.5px] border-white/28 font-body text-[14px] px-5 py-3.5 rounded-lg hover:bg-white/10 transition-colors"
-              >
-                Our Story
-              </a>
-            </div>
-
-            <p className="text-white/30 font-body text-xs mt-5">
-              Free delivery in Nairobi on orders above KES 1,500
-            </p>
+              Shop Now
+            </a>
+            <a
+              href="/#our-story"
+              className="bg-transparent text-white border border-white/35 font-body px-6 py-3.5 rounded-xl hover:bg-white/10 transition-colors"
+            >
+              Our Story
+            </a>
           </div>
 
-          {/* Right: product card */}
-          <div>
-            <div className="bg-white/5 border border-white/10 rounded-2xl p-5 lg:p-6">
-              <p className="text-orange font-body text-[10px] font-semibold uppercase tracking-[2px] mb-2">
-                TODAY&apos;S SPECIAL
-              </p>
-              {heroProduct ? (
-                <>
-                  <p className="text-white text-[18px] font-medium font-body mb-1.5">
-                    {heroProduct.name}
-                  </p>
-                  <p className="text-white/45 text-xs font-body mb-4">{heroProduct.sizeVariant}</p>
-                  <div className="flex items-center justify-between">
-                    <span className="text-orange font-display text-[28px] font-bold">
-                      KES {parseFloat(heroProduct.priceKes).toLocaleString()}
-                    </span>
-                    <HeroAddToCart product={heroProduct} />
-                  </div>
-                </>
-              ) : (
-                <>
-                  <p className="text-white text-[18px] font-medium font-body mb-1.5">
-                    Premium Roasted Tilapia
-                  </p>
-                  <p className="text-white/45 text-xs font-body mb-4">Whole Fish — 500g</p>
-                  <div className="flex items-center justify-between">
-                    <span className="text-orange font-display text-[28px] font-bold">KES 650</span>
-                    <a
-                      href="/shop"
-                      className="bg-orange text-white font-body text-[13px] font-medium px-4 py-2 rounded-lg hover:bg-orange-dark transition-colors"
-                    >
-                      Shop Now
-                    </a>
-                  </div>
-                </>
-              )}
-
-              {/* Stats mini-grid */}
-              <div className="grid grid-cols-2 gap-3 mt-3">
-                <div className="bg-orange/10 border border-orange/20 rounded-xl p-4">
-                  <p className="text-white font-display text-[26px] font-bold leading-none">486</p>
-                  <p className="text-white/45 font-body text-[11px] mt-1">Monthly customers</p>
-                </div>
-                <div className="bg-white/4 border border-white/7 rounded-xl p-4">
-                  <p className="text-white font-display text-[26px] font-bold leading-none">300+</p>
-                  <p className="text-white/45 font-body text-[11px] mt-1">Women empowered</p>
-                </div>
-              </div>
-            </div>
-          </div>
+          {/* Delivery note */}
+          <p className="hero-note text-white/45 font-body text-[12px] text-center mt-4">
+            Free delivery in Nairobi on orders above KES 1,500
+          </p>
         </div>
       </section>
 
@@ -154,7 +158,7 @@ export default async function HomePage() {
           <span className="bg-orange text-white font-body text-[10px] font-semibold uppercase tracking-[1.5px] px-3 py-1.5 rounded-full">
             Order Fresh Today
           </span>
-          <h2 className="font-display text-[40px] text-navy mt-3 mb-2.5">Our Products</h2>
+          <h2 className="font-fraunces font-bold text-[40px] text-navy mt-3 mb-2.5">Our Products</h2>
           <p className="text-gray-600 font-body text-[15px] max-w-lg leading-[1.75]">
             Sustainably sourced from Lake Victoria. Roasted fresh daily using energy-efficient ovens.
             Packaged to international standards.
@@ -190,7 +194,7 @@ export default async function HomePage() {
             <span className="inline-flex items-center gap-2 bg-orange/15 border border-orange/25 text-orange font-body text-[10px] font-semibold uppercase tracking-[1.2px] px-3 py-1.5 rounded-full mb-3">
               Our Mission
             </span>
-            <h2 className="font-display text-[36px] text-navy leading-tight mb-5">
+            <h2 className="font-fraunces font-bold text-[36px] text-navy leading-tight mb-5">
               Empowering Women,
               <br />
               Sustaining Communities
@@ -255,7 +259,7 @@ export default async function HomePage() {
             <span className="inline-flex bg-orange/20 text-orange font-body text-[10px] font-semibold uppercase tracking-[1.2px] px-3 py-1.5 rounded-full mb-3">
               The Bedo Fish Model
             </span>
-            <h2 className="font-display text-[34px] text-white">From Lake Victoria to Your Table</h2>
+            <h2 className="font-fraunces font-bold text-[34px] text-white">From Lake Victoria to Your Table</h2>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-3xl mx-auto">
@@ -295,7 +299,7 @@ export default async function HomePage() {
             <span className="inline-flex bg-orange/15 border border-orange/25 text-orange font-body text-[10px] font-semibold uppercase tracking-[1.2px] px-3 py-1.5 rounded-full mb-3">
               Impact
             </span>
-            <h2 className="font-display text-[34px] text-navy">Aligned With Global Goals</h2>
+            <h2 className="font-fraunces font-bold text-[34px] text-navy">Aligned With Global Goals</h2>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
@@ -350,7 +354,7 @@ export default async function HomePage() {
           <span className="inline-flex bg-orange/[0.18] text-orange font-body text-[10px] font-semibold uppercase tracking-[1.2px] px-3 py-1.5 rounded-full mb-5">
             Invest in Bedo Fish
           </span>
-          <h2 className="font-display text-[40px] text-white max-w-2xl mx-auto leading-tight mb-4">
+          <h2 className="font-fraunces font-bold text-[40px] text-white max-w-2xl mx-auto leading-tight mb-4">
             A $462,000 Opportunity to Scale Africa&apos;s Next Great Food Brand
           </h2>
           <p className="text-white/55 font-body text-[15px] max-w-xl mx-auto leading-7 mb-8">
