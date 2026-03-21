@@ -20,14 +20,14 @@ const dmSans = DM_Sans({
 const fraunces = Fraunces({
   subsets: ['latin'],
   axes: ['opsz', 'SOFT', 'WONK'],
-  variable: '--font-fraunces',
+  variable: '--fraunces',
   display: 'swap',
   style: ['normal', 'italic'],
 })
 
 export const metadata: Metadata = {
   title: {
-    default: 'Bedo Fish',
+    default: 'Bedo Fish - Roasted Tilapia Delivered Fresh',
     template: '%s | Bedo Fish',
   },
   description:

@@ -81,7 +81,7 @@ export default async function ProductPage({
               <span className="inline-block bg-gray-100 text-gray-600 font-body text-[11px] px-2.5 py-1 rounded-lg mb-2">
                 Lake Victoria Tilapia
               </span>
-              <h1 className="font-display text-[36px] text-navy mt-2 mb-1">{product.name}</h1>
+              <h1 className="font-fraunces font-bold text-[36px] text-navy mt-2 mb-1">{product.name}</h1>
               <p className="text-orange font-body text-[13px] font-semibold uppercase tracking-[0.5px] mb-4">
                 {product.sizeVariant}
               </p>

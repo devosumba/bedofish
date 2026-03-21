@@ -17,7 +17,7 @@
 
   --font-display: 'Playfair Display', Georgia, serif;
   --font-body: 'DM Sans', system-ui, sans-serif;
-  --font-fraunces: Fraunces, Georgia, serif;
+  --font-fraunces: var(--fraunces), Georgia, serif;
 }
 
 @keyframes fadeInUp {

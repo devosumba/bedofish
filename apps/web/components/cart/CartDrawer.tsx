@@ -66,7 +66,7 @@ export function CartDrawer() {
         >
           {/* Header */}
           <div className="flex items-center justify-between px-5 py-4 border-b border-gray-200">
-            <h2 className="font-display text-[20px] text-navy font-bold">Your Cart</h2>
+            <h2 className="font-fraunces font-bold text-[20px] text-navy">Your Cart</h2>
             <button
               onClick={closeCart}
               className="text-gray-400 hover:text-navy transition-colors"
