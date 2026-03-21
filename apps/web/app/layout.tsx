@@ -27,6 +27,7 @@ const fraunces = Fraunces({
 })
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://bedofish.com'),
   title: {
     default: 'Bedo Fish - Roasted Tilapia Delivered Fresh',
     template: '%s | Bedo Fish',
