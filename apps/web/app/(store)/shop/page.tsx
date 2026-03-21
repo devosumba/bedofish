@@ -51,7 +51,7 @@ export default async function ShopPage({
             <span className="inline-flex bg-orange text-white font-body text-[10px] font-semibold uppercase tracking-[1.5px] px-3 py-1.5 rounded-full">
               Fresh Daily
             </span>
-            <h1 className="font-fraunces font-bold text-[40px] text-navy mt-3 mb-2.5">Our Products</h1>
+            <h1 className="font-heading font-bold text-[40px] text-navy mt-3 mb-2.5">Our Products</h1>
             <p className="text-gray-600 font-body text-[15px] max-w-lg leading-[1.75]">
               Sustainably sourced from Lake Victoria. Roasted fresh daily using energy-efficient ovens.
               Packaged to international standards.

@@ -54,7 +54,7 @@ export default async function HomePage() {
 
           {/* Headline */}
           <h1
-            className="hero-h1 font-display font-black text-white text-center"
+            className="hero-h1 font-heading font-black text-white text-center"
             style={{ fontSize: 'clamp(2.8rem, 6vw, 5rem)', letterSpacing: '-0.02em', lineHeight: 1.05 }}
           >
             <span className="block">Africa&apos;s Finest</span>
@@ -103,26 +103,10 @@ export default async function HomePage() {
           </h1>
 
           {/* Subtext */}
-          <p className="hero-sub text-white/80 font-body text-base max-w-xl mx-auto leading-7 mt-5 mb-8">
+          <p className="hero-sub text-white/80 font-body text-base max-w-xl mx-auto leading-7 mt-5 mb-4">
             Every fish we roast fuels healthier diets, empowers women, and scales a sustainable
             future from Lake Victoria to your table.
           </p>
-
-          {/* CTA buttons */}
-          <div className="hero-actions flex items-center gap-3 justify-center flex-wrap">
-            <a
-              href="/shop"
-              className="bg-orange text-white font-body font-medium px-7 py-3.5 rounded-xl hover:bg-orange-dark transition-colors"
-            >
-              Shop Now
-            </a>
-            <a
-              href="/#our-story"
-              className="bg-transparent text-white border border-white/35 font-body px-6 py-3.5 rounded-xl hover:bg-white/10 transition-colors"
-            >
-              Our Story
-            </a>
-          </div>
 
           {/* Delivery note */}
           <p className="hero-note text-white/45 font-body text-[12px] text-center mt-4">
@@ -147,7 +131,7 @@ export default async function HomePage() {
               key={stat.label}
               className={`text-center px-7 py-2 ${i < 3 ? 'border-r border-white/22' : ''}`}
             >
-              <p className="text-white font-display text-[26px] font-bold">{stat.value}</p>
+              <p className="text-white font-heading text-[26px] font-bold">{stat.value}</p>
               <p className="text-white/75 font-body text-[10px] uppercase tracking-[1.2px] mt-1">
                 {stat.label}
               </p>
@@ -162,7 +146,7 @@ export default async function HomePage() {
           <span className="bg-orange text-white font-body text-[10px] font-semibold uppercase tracking-[1.5px] px-3 py-1.5 rounded-full">
             Order Fresh Today
           </span>
-          <h2 className="font-fraunces font-bold text-[40px] text-navy mt-3 mb-2.5">Our Products</h2>
+          <h2 className="font-heading font-bold text-[40px] text-navy mt-3 mb-2.5">Our Products</h2>
           <p className="text-gray-600 font-body text-[15px] max-w-lg leading-[1.75]">
             Sustainably sourced from Lake Victoria. Roasted fresh daily using energy-efficient ovens.
             Packaged to international standards.
@@ -198,7 +182,7 @@ export default async function HomePage() {
             <span className="inline-flex items-center gap-2 bg-orange/15 border border-orange/25 text-orange font-body text-[10px] font-semibold uppercase tracking-[1.2px] px-3 py-1.5 rounded-full mb-3">
               Our Mission
             </span>
-            <h2 className="font-fraunces font-bold text-[36px] text-navy leading-tight mb-5">
+            <h2 className="font-heading font-bold text-[36px] text-navy leading-tight mb-5">
               Empowering Women,
               <br />
               Sustaining Communities
@@ -248,7 +232,7 @@ export default async function HomePage() {
               },
             ].map((stat) => (
               <div key={stat.value} className={`bg-gray-100 rounded-xl p-5 border-l-4 ${stat.borderColor}`}>
-                <p className={`font-display text-[30px] font-bold ${stat.textColor}`}>{stat.value}</p>
+                <p className={`font-heading text-[30px] font-bold ${stat.textColor}`}>{stat.value}</p>
                 <p className="text-gray-600 font-body text-xs mt-1.5 leading-5">{stat.label}</p>
               </div>
             ))}
@@ -263,7 +247,7 @@ export default async function HomePage() {
             <span className="inline-flex bg-orange/20 text-orange font-body text-[10px] font-semibold uppercase tracking-[1.2px] px-3 py-1.5 rounded-full mb-3">
               The Bedo Fish Model
             </span>
-            <h2 className="font-fraunces font-bold text-[34px] text-white">From Lake Victoria to Your Table</h2>
+            <h2 className="font-heading font-bold text-[34px] text-white">From Lake Victoria to Your Table</h2>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-3xl mx-auto">
@@ -286,9 +270,9 @@ export default async function HomePage() {
             ].map((step) => (
               <div key={step.num} className="text-center">
                 <div className="w-14 h-14 bg-orange rounded-full flex items-center justify-center mx-auto mb-4">
-                  <span className="text-white font-display text-[18px] font-bold">{step.num}</span>
+                  <span className="text-white font-heading text-[18px] font-bold">{step.num}</span>
                 </div>
-                <h3 className="text-white font-display text-[17px] mb-2.5">{step.title}</h3>
+                <h3 className="text-white font-heading text-[17px] mb-2.5">{step.title}</h3>
                 <p className="text-white/55 font-body text-[13px] leading-7">{step.copy}</p>
               </div>
             ))}
@@ -303,7 +287,7 @@ export default async function HomePage() {
             <span className="inline-flex bg-orange/15 border border-orange/25 text-orange font-body text-[10px] font-semibold uppercase tracking-[1.2px] px-3 py-1.5 rounded-full mb-3">
               Impact
             </span>
-            <h2 className="font-fraunces font-bold text-[34px] text-navy">Aligned With Global Goals</h2>
+            <h2 className="font-heading font-bold text-[34px] text-navy">Aligned With Global Goals</h2>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
@@ -358,7 +342,7 @@ export default async function HomePage() {
           <span className="inline-flex bg-orange/[0.18] text-orange font-body text-[10px] font-semibold uppercase tracking-[1.2px] px-3 py-1.5 rounded-full mb-5">
             Invest in Bedo Fish
           </span>
-          <h2 className="font-fraunces font-bold text-[40px] text-white max-w-2xl mx-auto leading-tight mb-4">
+          <h2 className="font-heading font-bold text-[40px] text-white max-w-2xl mx-auto leading-tight mb-4">
             A $462,000 Opportunity to Scale Africa&apos;s Next Great Food Brand
           </h2>
           <p className="text-white/55 font-body text-[15px] max-w-xl mx-auto leading-7 mb-8">
@@ -385,7 +369,7 @@ export default async function HomePage() {
                 key={chip.value}
                 className="bg-white/5 border border-white/[0.08] rounded-xl p-5 min-w-[140px] text-center"
               >
-                <p className="text-orange font-display text-[32px] font-bold leading-none">
+                <p className="text-orange font-heading text-[32px] font-bold leading-none">
                   {chip.value}
                 </p>
                 <p className="text-white/45 font-body text-[11px] mt-1">{chip.label}</p>

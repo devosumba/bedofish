@@ -101,7 +101,7 @@ export function HeroCtaCard() {
 
       {/* Price + details */}
       <div className="flex flex-col items-start flex-shrink-0">
-        <span className="text-white text-[14px] font-semibold font-body">
+        <span className="text-white text-[14px] font-semibold font-heading">
           KES {current.price.toLocaleString()}
         </span>
         <a

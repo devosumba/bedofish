@@ -1,141 +1,216 @@
 'use client'
 
+import { useState } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import { usePathname } from 'next/navigation'
 import { useSession, signIn } from 'next-auth/react'
-import { useState } from 'react'
-import { useScrollPosition } from '@/hooks/useScrollPosition'
 import { useCartStore } from '@/store/cartStore'
 import { UserMenu } from '@/components/auth/UserMenu'
 
-const NAV_LINKS = [
-  { label: 'Shop', href: '/shop' },
-  { label: 'Our Story', href: '/#our-story' },
-  { label: 'Impact', href: '/#impact' },
-  { label: 'Invest', href: '/#invest' },
-]
+function NavLink({
+  href,
+  children,
+  active,
+}: {
+  href: string
+  children: React.ReactNode
+  active?: boolean
+}) {
+  return (
+    <Link
+      href={href}
+      className={`
+        relative flex items-center px-4 py-2 rounded-full
+        text-sm font-medium font-body
+        transition-all duration-200
+        ${active ? 'text-white' : 'text-white/60 hover:text-white'}
+      `}
+    >
+      {active && (
+        <span
+          className="absolute inset-0 rounded-full"
+          style={{ background: '#F4911E' }}
+        />
+      )}
+      <span className="relative z-10">{children}</span>
+    </Link>
+  )
+}
 
 export function Navbar() {
   const pathname = usePathname()
-  const scrollY = useScrollPosition()
   const { data: session, status } = useSession()
   const toggleCart = useCartStore((s) => s.toggleCart)
   const itemCount = useCartStore((s) => s.itemCount())
-  const [mobileOpen, setMobileOpen] = useState(false)
-
-  const isHomepage = pathname === '/'
-  const isTransparent = isHomepage && scrollY <= 80
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
   return (
     <>
-      <nav
-        className={`relative sticky top-0 z-50 h-[60px] flex items-center justify-between px-6 lg:px-10 transition-colors duration-300 ${
-          isTransparent ? 'bg-transparent' : 'bg-navy'
-        }`}
-      >
-        {/* Left: Logo */}
-        <Link href="/" className="flex items-center flex-shrink-0">
-          <Image
-            src="/images/bedo-nav-logo.png"
-            alt="Bedo Fish"
-            width={150}
-            height={44}
-            className="object-contain w-auto h-10"
-            priority
+      <div className="fixed top-0 left-0 right-0 z-50 flex justify-center pt-4 pointer-events-none">
+        <nav
+          className="pointer-events-auto flex items-center gap-1 px-2 py-2 rounded-full"
+          style={{
+            background: 'rgba(14, 14, 14, 0.92)',
+            backdropFilter: 'blur(16px)',
+            WebkitBackdropFilter: 'blur(16px)',
+            border: '1px solid rgba(255,255,255,0.08)',
+            boxShadow: '0 4px 24px rgba(0,0,0,0.35)',
+          }}
+        >
+          {/* Logo */}
+          <Link href="/" className="flex items-center px-3 flex-shrink-0">
+            <Image
+              src="/images/bedo-nav-logo.png"
+              alt="Bedo Fish"
+              width={120}
+              height={36}
+              className="object-contain w-auto h-8"
+              priority
+            />
+          </Link>
+
+          {/* Nav links */}
+          <div className="hidden md:flex items-center">
+            <NavLink href="/shop" active={pathname === '/shop'}>
+              Shop
+            </NavLink>
+            <NavLink href="/#our-story" active={false}>
+              Our Story
+            </NavLink>
+            <NavLink href="/#impact" active={false}>
+              Impact
+            </NavLink>
+            <NavLink href="/#invest" active={false}>
+              Invest
+            </NavLink>
+          </div>
+
+          {/* Separator */}
+          <div
+            className="hidden md:block w-px h-5 mx-1 flex-shrink-0"
+            style={{ background: 'rgba(255,255,255,0.12)' }}
           />
-        </Link>
 
-        {/* Center: Nav links — absolutely centered in navbar */}
-        <div className="absolute left-1/2 -translate-x-1/2 hidden md:flex items-center gap-7">
-          {NAV_LINKS.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              className="font-body text-[13px] font-medium text-white/65 hover:text-white transition-colors duration-150"
-            >
-              {link.label}
-            </Link>
-          ))}
-        </div>
-
-        {/* Right: Auth + Cart */}
-        <div className="flex items-center gap-3 flex-shrink-0">
-          {/* Cart button */}
+          {/* Cart */}
           <button
             onClick={toggleCart}
-            className="flex items-center gap-1.5 bg-orange text-white font-body text-sm px-4 py-2 rounded-lg hover:bg-orange-dark transition-colors"
+            className="relative flex items-center gap-1.5 px-3 py-2 rounded-full
+                       text-white/70 hover:text-white text-sm font-medium font-body
+                       transition-all duration-200"
+            style={{ background: 'rgba(255,255,255,0.06)' }}
+            aria-label="Open cart"
           >
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
-              <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z" />
-              <line x1="3" y1="6" x2="21" y2="6" />
-              <path d="M16 10a4 4 0 01-8 0" />
+            <svg
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <circle cx="9" cy="21" r="1" />
+              <circle cx="20" cy="21" r="1" />
+              <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6" />
             </svg>
-            <span>Cart</span>
+            <span className="hidden sm:inline">Cart</span>
             {itemCount > 0 && (
-              <span className="bg-white text-orange font-bold text-[11px] rounded-full w-[18px] h-[18px] flex items-center justify-center leading-none">
+              <span
+                className="absolute -top-1 -right-1 w-4 h-4 rounded-full
+                           flex items-center justify-center text-[10px] font-bold text-white"
+                style={{ background: '#F4911E' }}
+              >
                 {itemCount}
               </span>
             )}
           </button>
 
-          {/* Auth section */}
+          {/* Auth */}
           {status === 'loading' ? (
-            <div className="w-20 h-8 bg-white/10 rounded-lg animate-pulse" />
+            <div className="w-16 h-8 rounded-full animate-pulse" style={{ background: 'rgba(255,255,255,0.08)' }} />
           ) : session ? (
-            <UserMenu />
+            <div
+              className="flex items-center gap-2 px-3 py-2 rounded-full
+                         text-white/70 hover:text-white transition-all duration-200"
+              style={{ background: 'rgba(255,255,255,0.06)' }}
+            >
+              <UserMenu />
+            </div>
           ) : (
             <button
               onClick={() => signIn('google', { callbackUrl: '/' })}
-              className="border-[1.5px] border-white/30 rounded-lg px-4 py-2 text-white font-body text-sm hover:bg-white/10 transition-colors"
+              className="px-4 py-2 rounded-full text-sm font-medium font-body
+                         text-white/70 hover:text-white transition-all duration-200"
             >
               Sign In
             </button>
           )}
 
-          {/* Mobile hamburger */}
+          {/* Hamburger */}
           <button
-            className="md:hidden text-white p-1"
-            onClick={() => setMobileOpen((v) => !v)}
-            aria-label="Toggle menu"
+            onClick={() => setMobileMenuOpen(true)}
+            className="md:hidden flex items-center justify-center w-9 h-9
+                       rounded-full text-white/70 hover:text-white transition-colors"
+            style={{ background: 'rgba(255,255,255,0.06)' }}
+            aria-label="Open menu"
           >
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
-              {mobileOpen ? (
-                <path d="M18 6L6 18M6 6l12 12" strokeLinecap="round" />
-              ) : (
-                <>
-                  <line x1="3" y1="6" x2="21" y2="6" strokeLinecap="round" />
-                  <line x1="3" y1="12" x2="21" y2="12" strokeLinecap="round" />
-                  <line x1="3" y1="18" x2="21" y2="18" strokeLinecap="round" />
-                </>
-              )}
+            <svg
+              width="18"
+              height="18"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+            >
+              <line x1="3" y1="6" x2="21" y2="6" />
+              <line x1="3" y1="12" x2="21" y2="12" />
+              <line x1="3" y1="18" x2="21" y2="18" />
             </svg>
           </button>
-        </div>
-      </nav>
+        </nav>
+      </div>
 
-      {/* Mobile drawer */}
-      {mobileOpen && (
-        <div className="md:hidden absolute top-[60px] left-0 right-0 bg-navy z-40 border-t border-white/10">
-          <div className="px-6 py-4 flex flex-col gap-4">
-            {NAV_LINKS.map((link) => (
+      {/* Mobile menu overlay */}
+      {mobileMenuOpen && (
+        <div
+          className="fixed inset-0 z-40 flex flex-col items-center justify-start pt-24 px-6"
+          style={{
+            background: 'rgba(14, 14, 14, 0.97)',
+            backdropFilter: 'blur(20px)',
+          }}
+        >
+          <button
+            onClick={() => setMobileMenuOpen(false)}
+            className="absolute top-6 right-6 w-10 h-10 rounded-full
+                       flex items-center justify-center text-white/60
+                       hover:text-white transition-colors"
+            style={{ background: 'rgba(255,255,255,0.08)' }}
+          >
+            ✕
+          </button>
+
+          <div className="flex flex-col items-center gap-2 w-full max-w-xs">
+            {[
+              { href: '/shop', label: 'Shop' },
+              { href: '/#our-story', label: 'Our Story' },
+              { href: '/#impact', label: 'Impact' },
+              { href: '/#invest', label: 'Invest' },
+            ].map(({ href, label }) => (
               <Link
-                key={link.href}
-                href={link.href}
-                onClick={() => setMobileOpen(false)}
-                className="font-body text-sm text-white/70 hover:text-white transition-colors py-1"
+                key={href}
+                href={href}
+                onClick={() => setMobileMenuOpen(false)}
+                className="w-full text-center py-4 rounded-2xl text-lg
+                           font-medium font-body text-white/70 hover:text-white
+                           transition-all duration-200"
+                style={{ background: 'rgba(255,255,255,0.06)' }}
               >
-                {link.label}
+                {label}
               </Link>
             ))}
-            {!session && (
-              <button
-                onClick={() => signIn('google', { callbackUrl: '/' })}
-                className="text-left font-body text-sm text-white/70 hover:text-white transition-colors py-1"
-              >
-                Sign In
-              </button>
-            )}
           </div>
         </div>
       )}

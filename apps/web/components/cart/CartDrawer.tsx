@@ -66,7 +66,7 @@ export function CartDrawer() {
         >
           {/* Header */}
           <div className="flex items-center justify-between px-5 py-4 border-b border-gray-200">
-            <h2 className="font-fraunces font-bold text-[20px] text-navy">Your Cart</h2>
+            <h2 className="font-heading font-bold text-[20px] text-navy">Your Cart</h2>
             <button
               onClick={closeCart}
               className="text-gray-400 hover:text-navy transition-colors"
@@ -171,7 +171,7 @@ export function CartDrawer() {
               </div>
               <div className="border-t border-gray-200 pt-2 flex justify-between items-center">
                 <span className="text-navy text-base font-semibold font-body">Total</span>
-                <span className="text-orange font-display text-[22px] font-bold">
+                <span className="text-orange font-heading text-[22px] font-bold">
                   KES {total.toLocaleString()}
                 </span>
               </div>

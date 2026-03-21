@@ -48,7 +48,7 @@ export function ProductCard({ product }: Props) {
 
         <div className="flex items-center justify-between">
           <div>
-            <span className="text-orange font-display text-xl font-bold">
+            <span className="text-orange font-heading text-xl font-bold">
               KES {parseFloat(product.priceKes).toLocaleString()}
             </span>
             {product.originalPrice && (

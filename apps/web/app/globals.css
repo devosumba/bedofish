@@ -15,9 +15,8 @@
   --color-gray-400: #999999;
   --color-gray-600: #555555;
 
-  --font-display: 'Playfair Display', Georgia, serif;
-  --font-body: 'DM Sans', system-ui, sans-serif;
-  --font-fraunces: var(--fraunces), Georgia, serif;
+  --font-heading: var(--font-heading), Georgia, serif;
+  --font-body: var(--font-body), system-ui, sans-serif;
 }
 
 @keyframes fadeInUp {
@@ -52,6 +51,11 @@ a {
   text-decoration: none;
 }
 
-.font-fraunces {
-  font-variation-settings: 'opsz' 144;
+.font-heading {
+  letter-spacing: -0.02em;
+}
+
+h1.font-heading,
+h2.font-heading {
+  letter-spacing: -0.03em;
 }

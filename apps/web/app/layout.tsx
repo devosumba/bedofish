@@ -1,35 +1,28 @@
 import type { Metadata } from 'next'
-import { Playfair_Display, DM_Sans, Fraunces } from 'next/font/google'
+import { Instrument_Serif, Inter } from 'next/font/google'
 import './globals.css'
 import { Providers } from '@/components/Providers'
 import { Navbar } from '@/components/layout/Navbar'
 import { CartDrawer } from '@/components/cart/CartDrawer'
+import { SplashLoader } from '@/components/ui/SplashLoader'
 
-const playfair = Playfair_Display({
+const instrumentSerif = Instrument_Serif({
   subsets: ['latin'],
-  weight: ['700', '900'],
-  variable: '--font-display',
+  weight: ['400'],
+  style: ['normal', 'italic'],
+  variable: '--font-heading',
 })
 
-const dmSans = DM_Sans({
+const inter = Inter({
   subsets: ['latin'],
   weight: ['300', '400', '500', '600'],
   variable: '--font-body',
 })
 
-const fraunces = Fraunces({
-  subsets: ['latin'],
-  axes: ['opsz', 'SOFT', 'WONK'],
-  variable: '--fraunces',
-  display: 'swap',
-  style: ['normal', 'italic'],
-  weight: 'variable',
-})
-
 export const metadata: Metadata = {
   metadataBase: new URL('https://bedofish.com'),
   title: {
-    default: 'Bedo Fish - Roasted Tilapia Delivered Fresh',
+    default: 'Bedo Fish | Roasted Tilapia Delivered Fresh!',
     template: '%s | Bedo Fish',
   },
   description:
@@ -52,11 +45,12 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${playfair.variable} ${dmSans.variable} ${fraunces.variable}`}>
+    <html lang="en" className={`${instrumentSerif.variable} ${inter.variable}`}>
       <body className="font-body">
         <Providers>
+          <SplashLoader />
           <Navbar />
-          <main>{children}</main>
+          <main className="pt-20">{children}</main>
           <CartDrawer />
         </Providers>
       </body>

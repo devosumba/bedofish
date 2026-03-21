@@ -40,7 +40,7 @@ export function SignInModal({ isOpen, onClose, callbackUrl }: Props) {
           </svg>
         </div>
 
-        <h2 className="font-fraunces font-bold text-[22px] text-navy mb-2">
+        <h2 className="font-heading font-bold text-[22px] text-navy mb-2">
           Sign in to Bedo Fish
         </h2>
         <p className="text-gray-600 text-sm font-body mb-6 leading-6">

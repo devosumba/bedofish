@@ -16,7 +16,7 @@ function ErrorContent() {
             <path d="M12 9v4M12 17h.01M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z" stroke="#DC2626" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
           </svg>
         </div>
-        <h1 className="font-fraunces font-bold text-2xl text-navy mb-2">Sign-in error</h1>
+        <h1 className="font-heading font-bold text-2xl text-navy mb-2">Sign-in error</h1>
         <p className="text-gray-400 text-sm font-body mb-1">
           {error === 'OAuthAccountNotLinked'
             ? 'This email is linked to another account.'
