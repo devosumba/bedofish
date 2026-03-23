@@ -97,7 +97,29 @@ if (!pc) {
   console.log(`  ${GREEN}checkmark${RESET} PostCSS config is valid`)
 }
 
-// Guard 4: animations.css — if imported, must exist
+// Guard 4: No var() references inside @theme (the recurring crash pattern)
+// This is the exact bug that broke CSS twice: --font-x: var(--font-x) inside
+// @theme creates a self-referential CSS variable that empties Tailwind's output.
+if (css) {
+  const themeMatch = css.match(/@theme\s*\{([^}]*(?:\{[^}]*\}[^}]*)*)\}/s)
+  if (themeMatch) {
+    const themeBlock = themeMatch[1]
+    const varRefs = themeBlock.match(/--[\w-]+\s*:\s*[^;]*var\([^)]+\)[^;]*/g) || []
+    if (varRefs.length > 0) {
+      errors.push(
+        'var() reference found inside @theme block — this WILL crash Tailwind v4 CSS output:\n' +
+        varRefs.map(v => `  ${v.trim()}`).join('\n') + '\n' +
+        '  @theme values must be static strings only.\n' +
+        '  Font families belong in plain CSS classes, NOT in @theme.\n' +
+        '  See: apps/web/CSS-HEALTH.md'
+      )
+    } else {
+      console.log(`  ${GREEN}checkmark${RESET} @theme contains no var() references`)
+    }
+  }
+}
+
+// Guard 5a: animations.css — if imported, must exist
 if (layout && (layout.includes('animations.css') || layout.includes('/animations'))) {
   const animExists =
     exists('styles/animations.css') || exists('app/animations.css')

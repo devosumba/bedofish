@@ -64,15 +64,26 @@ If `css-guard.mjs` exits with code 1, the dev server NEVER starts.
 This means broken CSS is caught the moment anyone tries to run
 the app — not just on commit.
 
-## The circular variable trap
-NEVER write self-referential CSS variables in @theme:
-```css
-/* WRONG — crashes Tailwind v4 processing */
---font-heading: var(--font-heading), Georgia, serif;
+## Why fonts are NOT in @theme
 
-/* CORRECT — static string */
---font-heading: 'Instrument Serif', Georgia, serif;
+Font families were removed from `@theme` permanently. This is intentional.
+
+**The bug that kept happening:** Any `var()` reference inside `@theme`
+(including self-references like `--font-heading: var(--font-heading)`)
+causes Tailwind v4's CSS generator to output nothing — all styling gone.
+This happened twice before the architecture was fixed.
+
+**The permanent fix:** Font families are defined as plain CSS classes:
+```css
+.font-heading { font-family: var(--font-heading, 'Instrument Serif', Georgia, serif); }
+.font-body    { font-family: var(--font-body, 'Inter', system-ui, sans-serif); }
 ```
-The font variables in @theme must be static strings.
-Next.js font injection (variable: '--font-heading') will override
-at the html element level via CSS cascade — this is expected.
+
+These plain CSS classes:
+- Cannot crash Tailwind (they're not processed by @theme)
+- Have static fallbacks (work even if Next.js injection fails)
+- Work identically to Tailwind utilities for all existing `font-heading` class usage
+- Are protected by css-guard: any var() inside @theme is now a build error
+
+**DO NOT move font families back into @theme.** The guard will block the
+dev server and build if any `var()` reference appears inside `@theme`.
