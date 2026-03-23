@@ -10,13 +10,15 @@ const instrumentSerif = Instrument_Serif({
   subsets: ['latin'],
   weight: ['400'],
   style: ['normal', 'italic'],
-  variable: '--font-heading',
+  variable: '--instrument-serif',
+  display: 'swap',
 })
 
 const inter = Inter({
   subsets: ['latin'],
-  weight: ['300', '400', '500', '600'],
-  variable: '--font-body',
+  weight: ['300', '400', '500', '600', '700'],
+  variable: '--inter',
+  display: 'swap',
 })
 
 export const metadata: Metadata = {
@@ -45,7 +47,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${instrumentSerif.variable} ${inter.variable}`}>
+    <html lang="en" className={`${instrumentSerif.variable} ${inter.variable} antialiased`}>
       <body className="font-body">
         <Providers>
           <SplashLoader />
