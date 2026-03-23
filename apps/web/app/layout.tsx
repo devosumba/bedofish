@@ -1,6 +1,6 @@
+import './globals.css'
 import type { Metadata } from 'next'
 import { Instrument_Serif, Inter } from 'next/font/google'
-import './globals.css'
 import { Providers } from '@/components/Providers'
 import { Navbar } from '@/components/layout/Navbar'
 import { CartDrawer } from '@/components/cart/CartDrawer'
@@ -10,14 +10,14 @@ const instrumentSerif = Instrument_Serif({
   subsets: ['latin'],
   weight: ['400'],
   style: ['normal', 'italic'],
-  variable: '--instrument-serif',
+  variable: '--font-heading',
   display: 'swap',
 })
 
 const inter = Inter({
   subsets: ['latin'],
   weight: ['300', '400', '500', '600', '700'],
-  variable: '--inter',
+  variable: '--font-body',
   display: 'swap',
 })
 
@@ -47,8 +47,8 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${instrumentSerif.variable} ${inter.variable} antialiased`}>
-      <body className="font-body">
+    <html lang="en" className={`${instrumentSerif.variable} ${inter.variable}`}>
+      <body className="font-body bg-white text-navy antialiased">
         <Providers>
           <SplashLoader />
           <Navbar />

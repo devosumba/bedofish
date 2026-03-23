@@ -3,11 +3,16 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev --port 3000",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint",
-    "type-check": "tsc --noEmit"
+    "css-guard":  "node scripts/css-guard.mjs",
+    "css-repair": "node scripts/css-repair.mjs",
+    "predev":     "node scripts/css-guard.mjs",
+    "dev":        "next dev --port 3000",
+    "prebuild":   "node scripts/css-guard.mjs",
+    "build":      "next build",
+    "start":      "next start",
+    "lint":       "next lint",
+    "type-check": "tsc --noEmit",
+    "check:css":  "node scripts/css-guard.mjs"
   },
   "dependencies": {
     "@auth/drizzle-adapter": "^1.7.0",

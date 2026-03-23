@@ -7,13 +7,17 @@
     "type-check": "turbo run type-check",
     "lint": "turbo run lint",
     "test": "turbo run test",
-    "precommit": "secretlint \"**/*\""
+    "css-guard": "pnpm --filter web css-guard",
+    "css-repair": "pnpm --filter web css-repair",
+    "precommit": "secretlint \"**/*\"",
+    "prepare": "husky"
   },
   "devDependencies": {
     "@secretlint/secretlint-rule-preset-recommend": "^9.0.0",
     "@typescript-eslint/eslint-plugin": "^8.0.0",
     "@typescript-eslint/parser": "^8.0.0",
     "eslint": "^9.0.0",
+    "husky": "^9.1.7",
     "prettier": "^3.7.4",
     "prettier-plugin-tailwindcss": "^0.6.0",
     "secretlint": "^9.0.0",
