@@ -44,7 +44,7 @@ export default async function HomePage() {
         />
 
         {/* Content */}
-        <div className="relative z-20 flex flex-col items-center max-w-4xl mx-auto">
+        <div className="relative z-20 flex flex-col items-center w-full max-w-5xl mx-auto px-6 pb-36">
           {/* Eyebrow badge */}
           <div className="hero-eyebrow inline-flex items-center border border-white/30 rounded-full px-4 py-1.5 mb-5">
             <span className="font-body text-[11px] font-semibold text-white uppercase tracking-[2.5px]">
@@ -52,20 +52,23 @@ export default async function HomePage() {
             </span>
           </div>
 
-          {/* Headline */}
+          {/* Headline — 2 lines, words spread across width */}
           <h1
-            className="hero-h1 font-heading font-black text-white text-center"
-            style={{ fontSize: 'clamp(2.8rem, 6vw, 5rem)', letterSpacing: '-0.02em', lineHeight: 1.05 }}
+            className="hero-h1 font-heading font-black text-white w-full"
+            style={{ fontSize: 'clamp(2rem, 4.5vw, 3.5rem)', lineHeight: '1.1', letterSpacing: '-0.02em' }}
           >
-            <span className="block">Africa&apos;s Finest</span>
-            <span className="block">
+            {/* Line 1: Africa's Finest — Roasted — Tilapia */}
+            <span
+              className="block w-full"
+              style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline' }}
+            >
+              <span>Africa&apos;s Finest</span>
               <span className="relative inline-block">
                 Roasted
                 <svg
                   className="absolute -bottom-2 left-0 w-full"
                   viewBox="0 0 200 12"
                   fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
                   preserveAspectRatio="none"
                 >
                   <path
@@ -77,17 +80,21 @@ export default async function HomePage() {
                   />
                 </svg>
               </span>
-              {' '}Tilapia
+              <span>Tilapia</span>
             </span>
-            <span className="block">
-              Delivered{' '}
+
+            {/* Line 2: Delivered — Fresh */}
+            <span
+              className="block w-full"
+              style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', marginTop: '0.15em' }}
+            >
+              <span>Delivered</span>
               <span className="relative inline-block">
                 Fresh
                 <svg
                   className="absolute -bottom-2 left-0 w-full"
                   viewBox="0 0 200 12"
                   fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
                   preserveAspectRatio="none"
                 >
                   <path
@@ -103,13 +110,16 @@ export default async function HomePage() {
           </h1>
 
           {/* Subtext */}
-          <p className="hero-sub text-white/80 font-body text-base max-w-xl mx-auto leading-7 mt-5 mb-4">
+          <p
+            className="hero-sub font-body text-white/80 max-w-xl mx-auto leading-7 mt-8"
+            style={{ fontSize: 'clamp(0.9rem, 1.5vw, 1.05rem)' }}
+          >
             Every fish we roast fuels healthier diets, empowers women, and scales a sustainable
             future from Lake Victoria to your table.
           </p>
 
           {/* Delivery note */}
-          <p className="hero-note text-white/45 font-body text-[12px] text-center mt-4">
+          <p className="hero-note font-body text-white/50 text-sm mt-3">
             Free delivery in Nairobi on orders above KES 1,500
           </p>
         </div>

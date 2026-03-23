@@ -20,17 +20,13 @@ function NavLink({
   return (
     <Link
       href={href}
-      className={`
-        relative flex items-center px-4 py-2 rounded-full
-        text-sm font-medium font-body
-        transition-all duration-200
-        ${active ? 'text-white' : 'text-white/60 hover:text-white'}
-      `}
+      className="relative flex items-center px-4 py-2 rounded-full text-sm font-medium font-body transition-all duration-200 hover:opacity-80"
+      style={{ color: active ? '#ffffff' : '#014aad' }}
     >
       {active && (
         <span
           className="absolute inset-0 rounded-full"
-          style={{ background: '#F4911E' }}
+          style={{ background: '#014aad' }}
         />
       )}
       <span className="relative z-10">{children}</span>
@@ -47,15 +43,15 @@ export function Navbar() {
 
   return (
     <>
-      <div className="fixed top-0 left-0 right-0 z-50 flex justify-center pt-4 pointer-events-none">
+      <div className="fixed top-0 left-0 right-0 z-50 flex justify-center pt-3 pointer-events-none">
         <nav
-          className="pointer-events-auto flex items-center gap-1 px-2 py-2 rounded-full"
+          className="pointer-events-auto flex items-center gap-1 px-2 py-1.5 rounded-full"
           style={{
-            background: 'rgba(14, 14, 14, 0.92)',
-            backdropFilter: 'blur(16px)',
-            WebkitBackdropFilter: 'blur(16px)',
+            background: 'rgba(17, 17, 17, 0.95)',
+            backdropFilter: 'blur(12px)',
+            WebkitBackdropFilter: 'blur(12px)',
             border: '1px solid rgba(255,255,255,0.08)',
-            boxShadow: '0 4px 24px rgba(0,0,0,0.35)',
+            boxShadow: '0 2px 16px rgba(0,0,0,0.30)',
           }}
         >
           {/* Logo */}
@@ -63,9 +59,10 @@ export function Navbar() {
             <Image
               src="/images/bedo-nav-logo.png"
               alt="Bedo Fish"
-              width={120}
-              height={36}
-              className="object-contain w-auto h-8"
+              width={110}
+              height={32}
+              className="object-contain w-auto"
+              style={{ height: '28px' }}
               priority
             />
           </Link>
@@ -88,22 +85,25 @@ export function Navbar() {
 
           {/* Separator */}
           <div
-            className="hidden md:block w-px h-5 mx-1 flex-shrink-0"
-            style={{ background: 'rgba(255,255,255,0.12)' }}
+            className="hidden md:block w-px h-4 mx-1 flex-shrink-0"
+            style={{ background: 'rgba(1, 74, 173, 0.2)' }}
           />
 
           {/* Cart */}
           <button
             onClick={toggleCart}
             className="relative flex items-center gap-1.5 px-3 py-2 rounded-full
-                       text-white/70 hover:text-white text-sm font-medium font-body
-                       transition-all duration-200"
-            style={{ background: 'rgba(255,255,255,0.06)' }}
+                       text-sm font-medium font-body transition-all duration-200
+                       hover:opacity-80"
+            style={{
+              color: '#014aad',
+              background: 'rgba(1, 74, 173, 0.08)',
+            }}
             aria-label="Open cart"
           >
             <svg
-              width="16"
-              height="16"
+              width="15"
+              height="15"
               viewBox="0 0 24 24"
               fill="none"
               stroke="currentColor"
@@ -120,7 +120,7 @@ export function Navbar() {
               <span
                 className="absolute -top-1 -right-1 w-4 h-4 rounded-full
                            flex items-center justify-center text-[10px] font-bold text-white"
-                style={{ background: '#F4911E' }}
+                style={{ background: '#014aad' }}
               >
                 {itemCount}
               </span>
@@ -129,12 +129,14 @@ export function Navbar() {
 
           {/* Auth */}
           {status === 'loading' ? (
-            <div className="w-16 h-8 rounded-full animate-pulse" style={{ background: 'rgba(255,255,255,0.08)' }} />
+            <div
+              className="w-16 h-8 rounded-full animate-pulse"
+              style={{ background: 'rgba(1, 74, 173, 0.08)' }}
+            />
           ) : session ? (
             <div
-              className="flex items-center gap-2 px-3 py-2 rounded-full
-                         text-white/70 hover:text-white transition-all duration-200"
-              style={{ background: 'rgba(255,255,255,0.06)' }}
+              className="flex items-center gap-2 px-3 py-2 rounded-full transition-all duration-200"
+              style={{ background: 'rgba(1, 74, 173, 0.08)' }}
             >
               <UserMenu />
             </div>
@@ -142,7 +144,8 @@ export function Navbar() {
             <button
               onClick={() => signIn('google', { callbackUrl: '/' })}
               className="px-4 py-2 rounded-full text-sm font-medium font-body
-                         text-white/70 hover:text-white transition-all duration-200"
+                         transition-all duration-200 hover:opacity-80"
+              style={{ color: '#014aad' }}
             >
               Sign In
             </button>
@@ -151,14 +154,17 @@ export function Navbar() {
           {/* Hamburger */}
           <button
             onClick={() => setMobileMenuOpen(true)}
-            className="md:hidden flex items-center justify-center w-9 h-9
-                       rounded-full text-white/70 hover:text-white transition-colors"
-            style={{ background: 'rgba(255,255,255,0.06)' }}
+            className="md:hidden flex items-center justify-center w-8 h-8
+                       rounded-full transition-colors hover:opacity-80"
+            style={{
+              color: '#014aad',
+              background: 'rgba(1, 74, 173, 0.08)',
+            }}
             aria-label="Open menu"
           >
             <svg
-              width="18"
-              height="18"
+              width="16"
+              height="16"
               viewBox="0 0 24 24"
               fill="none"
               stroke="currentColor"
